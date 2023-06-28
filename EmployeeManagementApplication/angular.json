@@ -62,9 +62,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "EmployeeManagementApplication:build",
+            "proxyConfig": "src/proxy.conf.json"
+
+          },
           "configurations": {
             "production": {
               "browserTarget": "EmployeeManagementApplication:build:production"
+              
             },
             "development": {
               "browserTarget": "EmployeeManagementApplication:build:development"

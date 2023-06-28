@@ -3,6 +3,7 @@ import { FormGroup, FormArray, FormBuilder,Validators, FormControl } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service'
 import { Employee } from '../employee'
+import { EmployeeRequestDTO } from '../EmployeeRequestDTO';
 
 @Component({
   selector: 'app-create-employee',
@@ -21,6 +22,7 @@ export class CreateEmployeeComponent implements OnInit{
     contactNumber: "",
     skills:[] 
    }; 
+   employeeRequest:EmployeeRequestDTO;
 
   isAddMode: boolean; 
   submitted = false;
@@ -100,7 +102,8 @@ export class CreateEmployeeComponent implements OnInit{
   }
   
   Save(){
-    debugger
+    debugger    
+    
     this.employeeService.createEmployee(this.empForm.value).subscribe( data =>{
       console.log(data);
       this.goToEmployeeList();
