@@ -1,9 +1,8 @@
-import { DecimalPipe } from "@angular/common";
 
 export interface Employee {
     id: number;
     name: string;
-    gender: string;
+    gender: number;
     contactNumber: string;
     email: string
     skills:skill[];
@@ -11,7 +10,7 @@ export interface Employee {
 
 export interface skill{    
     skillName:string;
-    skillExperience:DecimalPipe;    
+    skillExperience:number;    
 }
 
 
