@@ -1,9 +1,8 @@
-import { DecimalPipe } from "@angular/common";
 
 export interface EmployeeRequestDTO {
     id: number;
     name: string;
-    gender: string;
+    gender: number;
     contactNumber: string;
     email: string
     skills:SkillRequestDTO[];
@@ -11,6 +10,6 @@ export interface EmployeeRequestDTO {
 
 export interface SkillRequestDTO{    
     skillName:string;
-    skillExperience:DecimalPipe;
+    skillExperience:number;
     employeeId:number;    
 }

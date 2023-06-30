@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs';
-import { Employee } from './employee';
-import { EmployeeResponseDTO } from './EmployeeResponseDTO';
-import { EmployeeRequestDTO } from './EmployeeRequestDTO';
+import { Employee } from '../shared/employee';
+import { EmployeeResponseDTO } from '../shared/EmployeeResponseDTO';
+import { EmployeeRequestDTO } from '../shared/EmployeeRequestDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,19 +20,22 @@ export class EmployeeService {
 
   constructor(private httpClient: HttpClient) { }
 
+  //get list of employee
   getEmployeesList(): Observable<EmployeeResponseDTO[]>{
     this.baseURL = "/api/Employee"
     return this.httpClient.get<EmployeeResponseDTO[]>(`${this.baseURL}`);    
-  } 
+  };
 
+  //post employee data
   createEmployee(addEmployeeRequest: EmployeeRequestDTO): Observable<EmployeeRequestDTO> {
     debugger
     return this.httpClient.post<EmployeeRequestDTO>(this.baseURL, addEmployeeRequest)
        .pipe(
           catchError(this.handleError)
        );
- }
+ };
 
+ //get employee data by Id
  getEmployeeById(id: number): Observable<Employee> {
 
   const url = `${this.baseURL}/${id}`
@@ -42,8 +45,9 @@ export class EmployeeService {
         catchError(this.handleError)
      );
 
-} 
+};
 
+//put employee data
 updateEmployee(id: number, update: EmployeeRequestDTO): Observable<EmployeeRequestDTO> {
 
   const url = `${this.baseURL}/${id}`;
@@ -52,8 +56,9 @@ updateEmployee(id: number, update: EmployeeRequestDTO): Observable<EmployeeReque
         catchError(this.handleError)
      );
 
-} 
+};
 
+//Delete employee data
 deleteEmployee(id: number): Observable<{}> {
 
   const url = `${this.baseURL}/${id}`;
@@ -61,10 +66,10 @@ deleteEmployee(id: number): Observable<{}> {
      .pipe(
         catchError(this.handleError)
      );
-}
+};
 
   
-
+//Handle error
   private handleError(error: HttpErrorResponse) {
 
     if (error.error instanceof ErrorEvent) {
